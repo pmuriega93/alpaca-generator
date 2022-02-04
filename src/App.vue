@@ -1,26 +1,69 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+ <div class="container">
+    <h1 class="main-title">Alpaca Avatar Generator</h1>
+    <main class="alpaca">
+      
+      <AlpacaImg :selectedOption="selected"/>
+       
+      <AlpacaSelector @setImage="setImage"/>
+     
+    </main>
+ </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AlpacaSelector from '@/components/AlpacaSelector.vue'
+import AlpacaImg from '@/components/AlpacaImg.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AlpacaSelector,
+    AlpacaImg,
+  },
+  data() {
+    return {
+      selected: null,
+    }
+  },
+  methods: {
+    setImage(option) {
+      this.selected = option
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    box-sizing: inherit;
+    font-size: 62.5%;
+    font-family: 'Karma', serif;
+  }
+
+  body {
+    box-sizing: border-box;
+    background-color: #FAF9F9;
+    color: #555B6E;
+    margin: 2rem;
+    text-align: center;
+  }
+
+  .main-title {
+      font-size: 4.5rem;
+  }
+  .alpaca {
+      width: 100vw;
+      display: grid;
+      height: 90rem;
+      grid-template-columns: repeat(2, 1fr)
+  }
+
 </style>
